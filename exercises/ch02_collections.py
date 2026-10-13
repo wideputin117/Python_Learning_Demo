@@ -31,18 +31,22 @@ TICKETS: list[Ticket] = [
 
 def titles_by_priority(tickets: list[Ticket]) -> list[str]:
     """TODO: titles sorted by priority DESC, then id ASC (hint: sorted + key with a tuple)."""
-    raise NotImplementedError
+    return [t["title"] for t in sorted(tickets, key=lambda t:(-t["priority"],t["id"]))]
 
 
 def count_by_category(tickets: list[Ticket]) -> dict[str, int]:
     """TODO: {"billing": 2, ...}. Try collections.Counter."""
-    raise NotImplementedError
+    priorities =  dict(count_by_category(t["category"] for t in tickets))    
+    return priorities
+
 
 
 def group_ids_by_category(tickets: list[Ticket]) -> dict[str, list[int]]:
     """TODO: {"billing": [1, 3], ...}. Try collections.defaultdict(list)."""
-    raise NotImplementedError
-
+    groups = defaultdict(tickets)
+    for t in tickets:
+        groups[t["category"]].append(t["id"])
+    return dict(groups)
 
 def unique_tags(tickets: list[Ticket]) -> list[str]:
     """TODO: sorted list of distinct tags (hint: a nested set comprehension)."""
