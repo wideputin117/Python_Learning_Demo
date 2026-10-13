@@ -8,27 +8,37 @@ Solutions: exercises/solutions/ch01_syntax.py
 
 def format_ticket_ref(ticket_id: int) -> str:
     """TODO: 42 -> "TCK-00042" (zero-pad to width 5 with an f-string format spec)."""
-    raise NotImplementedError
+    return f"TCK-{ticket_id:05d}"
 
 
 def priority_label(p: int) -> str:
     """TODO: 1 low, 2 medium, 3 high, 4 urgent, anything else "unknown". Use `match`."""
-    raise NotImplementedError
-
+    match p:
+        case 1:
+            return "low"
+        case 2:
+            return "medium"
+        case 3:
+            return "high"
+        case 4:
+            return "urgent"
+        case _ :
+            return "unknown"
+ 
 
 def is_blank(text: str | None) -> bool:
     """TODO: True for None, "" or whitespace-only strings."""
-    raise NotImplementedError
+    return text is None or not text.strip()
 
 
 def confidence_str(score: float) -> str:
     """TODO: 0.875 -> "87.5%" (one decimal, percentage format spec)."""
-    raise NotImplementedError
+    return f"{score:.1%}"
 
 
 def normalize_tag(tag: str) -> str:
     """TODO: strip, lowercase, spaces -> hyphens. "  Payment Failed " -> "payment-failed"."""
-    raise NotImplementedError
+    return tag.strip().lower().replace(" ","-")
 
 
 if __name__ == "__main__":
